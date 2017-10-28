@@ -34,10 +34,12 @@ makeCacheMatrix <- function(x = matrix()) {
     ## Add argument checking to ensure that x is an invertible matrix
     ##     See this resource for a definition of invertible matrices:
     ##     https://cran.r-project.org/web/packages/matlib/vignettes/inv-ex1.html
-    if (det(x) == 0) {
-        stop("Error in calling makeCacheMatrix: the argument to the function was not an invertible matrix.") 
+    if (!is.na(det(x))) {
+        if (det(x) == 0) {
+            stop("Error in calling makeCacheMatrix: the argument to the function was not an invertible matrix.") 
+        }
     }
-    
+        
     ## Initialize the variable holding the inverse matrix to NULL
     inverse_x = NULL
     
@@ -51,8 +53,10 @@ makeCacheMatrix <- function(x = matrix()) {
         ## Add argument checking to ensure that y is an invertible matrix
         ##     See this resource for a definition of invertible matrices:
         ##     https://cran.r-project.org/web/packages/matlib/vignettes/inv-ex1.html
-        if (det(y) == 0) {
-            stop("Error in calling makeCacheMatrix$set: the argument to the function was not an invertible matrix.") 
+        if (!is.na(det(y))) {
+            if (det(y) == 0) {
+                stop("Error in calling makeCacheMatrix$set: the argument to the function was not an invertible matrix.") 
+            }
         }
         x <<- y
         inverse_x <<- NULL
@@ -112,10 +116,12 @@ cacheSolve <- function(x, ...) {
     ## Check that x$get() is an invertible matrix.
     ##     See this resource for a definition of invertible matrices:
     ##     https://cran.r-project.org/web/packages/matlib/vignettes/inv-ex1.html
-    if (det(x$get()) == 0) {
-        stop("Error in calling cacheSolve: the argument to the function was not an invertible makeCacheMatrix matrix.") 
+    if (!is.na(det(x$get()))) {
+        if (det(x$get()) == 0) {
+            stop("Error in calling makeCacheMatrix: the argument to the function was not an invertible matrix.") 
+        }
     }
-
+    
     ## Return a matrix that is the inverse of 'x'
     i <- x$getinverse()
     
