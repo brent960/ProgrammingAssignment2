@@ -34,7 +34,7 @@ makeCacheMatrix <- function(x = matrix()) {
     ## Add argument checking to ensure that x is an invertible matrix
     ##     See this resource for a definition of invertible matrices:
     ##     https://cran.r-project.org/web/packages/matlib/vignettes/inv-ex1.html
-    If (det(x) != 0) {
+    if (det(x) == 0) {
         stop("Error in calling makeCacheMatrix: the argument to the function was not an invertible matrix.") 
     }
     
@@ -51,7 +51,7 @@ makeCacheMatrix <- function(x = matrix()) {
         ## Add argument checking to ensure that y is an invertible matrix
         ##     See this resource for a definition of invertible matrices:
         ##     https://cran.r-project.org/web/packages/matlib/vignettes/inv-ex1.html
-        If (det(y) != 0) {
+        if (det(y) == 0) {
             stop("Error in calling makeCacheMatrix$set: the argument to the function was not an invertible matrix.") 
         }
         x <<- y
@@ -112,7 +112,7 @@ cacheSolve <- function(x, ...) {
     ## Check that x$get() is an invertible matrix.
     ##     See this resource for a definition of invertible matrices:
     ##     https://cran.r-project.org/web/packages/matlib/vignettes/inv-ex1.html
-    If (det(x$get()) != 0) {
+    if (det(x$get()) == 0) {
         stop("Error in calling cacheSolve: the argument to the function was not an invertible makeCacheMatrix matrix.") 
     }
 
